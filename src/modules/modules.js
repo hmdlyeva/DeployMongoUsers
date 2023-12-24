@@ -28,7 +28,7 @@ const Prodschema = mongoose.Schema(
         imgtitle: String,
       },
     ],
-    messages: [
+    message: [
       {
         id: Number,
         acceptedmessage: String,
