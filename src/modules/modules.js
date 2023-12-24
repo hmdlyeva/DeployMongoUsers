@@ -4,7 +4,17 @@ const Prodschema = mongoose.Schema(
   {
     name: String,
     id: Number,
-    age:Number
+    surname: String,
+    age:Number,
+    country: String,
+    info: String,
+    username: String,
+    gender: String,
+    password: String,
+    bio: String,
+    email: String,
+    number: Number,
+    ispublic: String,
   },
   {
     collection: "Users",
