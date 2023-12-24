@@ -14,7 +14,7 @@ const Prodschema = mongoose.Schema(
     bio: String,
     email: String,
     number: Number,
-    ispublic: String,
+    ispublic: Boolean,
   },
   {
     collection: "Users",
