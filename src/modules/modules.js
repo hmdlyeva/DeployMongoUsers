@@ -15,6 +15,14 @@ const Prodschema = mongoose.Schema(
     email: String,
     number: Number,
     ispublic: Boolean,
+    myfollow: Object,
+    menifollow: Array,
+    wishlist: Array,
+    block: Array,
+    myposter: Array,
+    message: Array,
+    mystory: Array,
+    notification: Array
   },
   {
     collection: "Users",
