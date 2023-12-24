@@ -5,7 +5,7 @@ const Prodschema = mongoose.Schema(
     name: String,
     id: Number,
     surname: String,
-    age:Number,
+    age: Number,
     country: String,
     info: String,
     username: String,
@@ -15,14 +15,39 @@ const Prodschema = mongoose.Schema(
     email: String,
     number: Number,
     ispublic: Boolean,
-    myfollow: Object,
+
+    myfollow: Array,
     menifollow: Array,
     wishlist: Array,
     block: Array,
-    myposter: Array,
-    message: Array,
-    mystory: Array,
-    notification: Array
+
+    myposter: [
+      {
+        id: Number,
+        imgsrc: String,
+        imgtitle: String,
+      },
+    ],
+    messages: [
+      {
+        id: Number,
+        acceptedmessage: String,
+      },
+    ],
+    mystory: [
+      {
+        id: Number,
+        storyimage: String,
+        storytitle: String,
+      },
+    ],
+    notification: [
+      {
+        id: Number,
+        ntfctncontent: String,
+      },
+    ],
+    isblockeduser:Boolean
   },
   {
     collection: "Users",
