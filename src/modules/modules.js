@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const Prodschema = mongoose.Schema(
   {
+     // id: { type: Number, unique: true },
     name: String,
     id: String,
     surname: String,
@@ -23,27 +24,27 @@ const Prodschema = mongoose.Schema(
 
     myposter: [
       {
-        id: Number,
+        id: String,
         imgsrc: String,
         imgtitle: String,
       },
     ],
     message: [
       {
-        id: Number,
+        id: String,
         acceptedmessage: String,
       },
     ],
     mystory: [
       {
-        id: { type: Number, unique: true },
+        id: String,
         storyimage: String,
         storytitle: String,
       },
     ],
     notification: [
       {
-        id: Number,
+        id: String,
         ntfctncontent: String,
       },
     ],
