@@ -2,9 +2,9 @@ const mongoose = require("mongoose");
 
 const Prodschema = mongoose.Schema(
   {
-     // id: { type: Number, unique: true },
+     id: { type: Number, unique: true },
     name: String,
-    id: String,
+    // id: String,
     surname: String,
     age: Number,
     country: String,
@@ -24,27 +24,27 @@ const Prodschema = mongoose.Schema(
 
     myposter: [
       {
-        id: String,
+        id: { type: Number, unique: true },
         imgsrc: String,
         imgtitle: String,
       },
     ],
     message: [
       {
-        id: String,
+        id: { type: Number, unique: true },
         acceptedmessage: String,
       },
     ],
     mystory: [
       {
-        id: String,
+        id: { type: Number, unique: true },
         storyimage: String,
         storytitle: String,
       },
     ],
     notification: [
       {
-        id: String,
+        id: { type: Number, unique: true },
         ntfctncontent: String,
       },
     ],
