@@ -36,7 +36,7 @@ const Prodschema = mongoose.Schema(
     ],
     mystory: [
       {
-        id: Number,
+        id: { type: Number, unique: true },
         storyimage: String,
         storytitle: String,
       },
