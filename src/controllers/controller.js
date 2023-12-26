@@ -53,12 +53,13 @@ const PostProd = async (req, res) => {
 };
 
 const Login = async (req, res) => {
+  const user = req.body
   try {
     let FindProdBYUsername = await Products.findOne({
-      username: req.body.username,
+      username: user.username,
     });
     let FindProdByPass = await Products.findOne({
-      password: req.body.password,
+      password: user.password,
     });
     if (FindProdBYUsername && FindProdByPass) {
       const token = jwt.sign(
