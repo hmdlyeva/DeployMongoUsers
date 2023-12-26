@@ -3,7 +3,7 @@ const ProdControllers = require("../controllers/controller");
 const userAuth = require("../middlewares/userAuth");
 
 
-router.get("/users", userAuth,ProdControllers.getAllProd);
+router.get("/users",ProdControllers.getAllProd);
 router.get("/users/:id", ProdControllers.getProdById);
 router.delete("/users/:id", ProdControllers.deletedProd);
 router.patch("/users/:id", ProdControllers.UpdatedProd);
