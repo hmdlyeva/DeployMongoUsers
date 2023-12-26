@@ -2,6 +2,7 @@ const Products = require("../modules/modules");
 const jwt = require("jsonwebtoken");
 const getAllProd = async (req, res) => {
   let allProd = await Products.find({});
+  console.log(req.headers.authorization.split(" ")[1]);
   res.send(allProd);
 };
 
@@ -54,6 +55,7 @@ const PostProd = async (req, res) => {
 
 const Login = async (req, res) => {
   const user = req.body;
+  console.log(user);
   try {
     let FindProdBYUsername = await Products.findOne({
       username: user.username,
@@ -65,12 +67,14 @@ const Login = async (req, res) => {
       const token = jwt.sign(
         { username: user.username, password: user.password },
         process.env.SECRET_TOKEN
+
         // {
         //   expiresIn: "1m",
         // }
+
       );
       console.log("token", token);
-      return res.status(200).send("salam");
+      return res.status(200).send("salam", token);
     } else {
       return res.status(201).send("please check your username or password");
     }
