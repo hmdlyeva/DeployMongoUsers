@@ -64,19 +64,19 @@ const Login = async (req, res) => {
       password: user.password,
     });
     if (FindProdBYUsername && FindProdByPass) {
-       res.status(200).send("salam userrrr");
+      //  res.status(200).send("salam userrrr");
 
-      // const token = jwt.sign(
-      //   { username: user.username, password: user.password },
-      //   process.env.SECRET_TOKEN
+      const token = jwt.sign(
+        { username: user.username, password: user.password },
+        process.env.SECRET_TOKEN
 
-      // {
-      //   expiresIn: "1m",
-      // }
+      {
+        expiresIn: "1m",
+      }
 
-      // );
-      // console.log("token", token);
-      // return res.status(200).send("salam", token);
+      );
+      console.log("token", token);
+      return res.status(200).send(token);
     } else {
        res.status(201).send("please check your username or password");
     }
