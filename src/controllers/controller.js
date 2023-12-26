@@ -87,9 +87,20 @@ const Login = async (req, res) => {
       return err;
     };
   }
+
+
+
 };
+const getAllUser = async (req, res) => {
+
+  let allUser = await Products.find({});
+  // console.log(req.headers.authorization.split(" ")[1]);
+  res.send(allUser);
+
+}
 
 module.exports = {
+  getAllUser,
   getAllProd,
   getProdById,
   deletedProd,
