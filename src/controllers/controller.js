@@ -2,7 +2,7 @@ const Products = require("../modules/modules");
 const jwt = require("jsonwebtoken");
 const getAllProd = async (req, res) => {
   let allProd = await Products.find({});
-  console.log(req.headers.authorization.split(" ")[1]);
+  // console.log(req.headers.authorization.split(" ")[1]);
   res.send(allProd);
 };
 

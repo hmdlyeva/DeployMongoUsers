@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const ProdControllers = require("../controllers/controller");
-const userAuth = require("../middlewares/userAuth");
+// const userAuth = require("../middlewares/userAuth");
 
 
 router.get("/users",ProdControllers.getAllProd);
@@ -10,6 +10,5 @@ router.patch("/users/:id", ProdControllers.UpdatedProd);
 router.put("/users/:id", ProdControllers.UpdatedWholeProd);
 router.post("/users", ProdControllers.PostProd);
 router.post("/login", ProdControllers.Login);
-
 
 module.exports = router;
