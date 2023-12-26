@@ -68,11 +68,11 @@ const Login = async (req, res) => {
 
       const token = jwt.sign(
         { username: user.username, password: user.password },
-        process.env.SECRET_TOKEN
+        process.env.SECRET_TOKEN,
 
-      // {
-      //   expiresIn: "1m",
-      // }
+      {
+        expiresIn: "60s",
+      }
 
       );
       console.log("token", token);
@@ -80,11 +80,9 @@ const Login = async (req, res) => {
     } else {
        res.status(201).send("please check your username or password");
     }
-  } catch {
-    (err) => {
-      console.log(err);
-      return err;
-    };
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send("Internal Server Error");
   }
 };
 
