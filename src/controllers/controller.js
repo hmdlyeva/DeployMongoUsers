@@ -64,7 +64,7 @@ const Login = async (req, res) => {
       password: user.password,
     });
     if (FindProdBYUsername && FindProdByPass) {
-      return res.status(200).send("salam userrrr");
+       res.status(200).send("salam userrrr");
 
       // const token = jwt.sign(
       //   { username: user.username, password: user.password },
@@ -78,7 +78,7 @@ const Login = async (req, res) => {
       // console.log("token", token);
       // return res.status(200).send("salam", token);
     } else {
-      return res.status(201).send("please check your username or password");
+       res.status(201).send("please check your username or password");
     }
   } catch {
     (err) => {
