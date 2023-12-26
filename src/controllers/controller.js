@@ -1,5 +1,5 @@
 const Products = require("../modules/modules");
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 const getAllProd = async (req, res) => {
   let allProd = await Products.find({});
   res.send(allProd);
@@ -42,8 +42,8 @@ const PostProd = async (req, res) => {
     const NewProd = new Products(req.body);
     NewProd.save();
     res.status(200).send({
-      message: "user perfectly registered!"
-    })
+      message: "user perfectly registered!",
+    });
   } catch {
     (err) => {
       console.log(err);
@@ -53,24 +53,27 @@ const PostProd = async (req, res) => {
 };
 
 const Login = async (req, res) => {
- 
   try {
     let FindProdBYUsername = await Products.findOne({
       username: req.body.username,
     });
-    let FindProdByPass = await Products.findOne({ password: req.body.password });
+    let FindProdByPass = await Products.findOne({
+      password: req.body.password,
+    });
     if (FindProdBYUsername && FindProdByPass) {
-      const token = jwt.sign({ username: user.username, password: user.password }, process.env.SECRET_TOKEN,
-        {
-        expiresIn: '1m',
-        });
-        console.log("token", token);
+      const token = jwt.sign(
+        { username: user.username, password: user.password },
+        process.env.SECRET_TOKEN
+        // {
+        //   expiresIn: "1m",
+        // }
+      );
+      console.log("token", token);
 
-      res.status(200).send(token);
+      return res.status(200).send(token);
+    } else {
+      return res.status(201).send("please check your username or password");
     }
-   else{
-    return  res.status(201).send("please check your username or password");
-   }
   } catch {
     (err) => {
       console.log(err);
@@ -86,5 +89,5 @@ module.exports = {
   PostProd,
   UpdatedProd,
   UpdatedWholeProd,
-  Login
+  Login,
 };
