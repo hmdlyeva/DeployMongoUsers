@@ -53,9 +53,10 @@ const PostProd = async (req, res) => {
   }
 };
 
+
 const Login = async (req, res) => {
   const user = req.body;
-  console.log(user);
+  // console.log(user);
   try {
     let FindProdBYUsername = await Products.findOne({
       username: user.username,
@@ -70,19 +71,21 @@ const Login = async (req, res) => {
         { username: user.username, password: user.password },
         process.env.SECRET_TOKEN,
 
-      {
-        expiresIn: "60s",
-      }
+        {
+          expiresIn: "60s",
+        }
 
       );
       console.log("token", token);
-       res.status(200).send(token);
+      return res.status(200).send(token);
     } else {
-       res.status(201).send("please check your username or password");
+      return res.status(201).send("please check your username or password");
     }
-  } catch (err) {
-    console.log(err);
-    return res.status(500).send("Internal Server Error");
+  } catch {
+    (err) => {
+      console.log(err);
+      return err;
+    };
   }
 };
 

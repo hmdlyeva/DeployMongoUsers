@@ -1,9 +1,9 @@
 const router = require("express").Router();
 const ProdControllers = require("../controllers/controller");
-// const userAuth = require("../middlewares/userAuth");
+const userAuth = require("../middlewares/userAuth");
 
 
-router.get("/users",ProdControllers.getAllProd);
+router.get("/users", userAuth, ProdControllers.getAllProd);
 router.get("/users/:id", ProdControllers.getProdById);
 router.delete("/users/:id", ProdControllers.deletedProd);
 router.patch("/users/:id", ProdControllers.UpdatedProd);
