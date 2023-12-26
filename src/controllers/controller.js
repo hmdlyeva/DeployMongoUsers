@@ -53,7 +53,7 @@ const PostProd = async (req, res) => {
 };
 
 const Login = async (req, res) => {
-  const user = req.body
+  const user = req.body;
   try {
     let FindProdBYUsername = await Products.findOne({
       username: user.username,
@@ -70,8 +70,7 @@ const Login = async (req, res) => {
         // }
       );
       console.log("token", token);
-
-      return res.status(200).send(token);
+      return res.status(200).send("salam");
     } else {
       return res.status(201).send("please check your username or password");
     }
