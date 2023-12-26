@@ -76,7 +76,7 @@ const Login = async (req, res) => {
 
       );
       console.log("token", token);
-      return res.status(200).send(token);
+       res.status(200).send(token);
     } else {
        res.status(201).send("please check your username or password");
     }
