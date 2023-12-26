@@ -31,13 +31,44 @@ const UpdatedWholeProd = async (req, res) => {
 };
 
 const PostProd = async (req, res) => {
-  let FindProdBYUsername = await Products.findOne({ username: req.body.username });
-  let FindProdByEmail = await Products.findOne({ email: req.body.email });
-  if (FindProdBYUsername || FindProdByEmail) {
-    res.status(201).send("olmaz");
-  } else {
+  try {
+    let FindProdBYUsername = await Products.findOne({
+      username: req.body.username,
+    });
+    let FindProdByEmail = await Products.findOne({ email: req.body.email });
+    if (FindProdBYUsername || FindProdByEmail) {
+      res.status(201).send("olmaz");
+    }
     const NewProd = new Products(req.body);
     NewProd.save();
+    res.status(200).send({
+      message: "user perfectly registered!"
+    })
+  } catch {
+    (err) => {
+      console.log(err);
+      return err;
+    };
+  }
+};
+
+const Login = async (req, res) => {
+  try {
+    let FindProdBYUsername = await Products.findOne({
+      username: req.body.username,
+    });
+    let FindProdByPass = await Products.findOne({ password: req.body.password });
+    if (FindProdBYUsername && FindProdByPass) {
+      res.status(200).send("welcome");
+    }
+   else{
+    return  res.status(201).send("please check your username or password");
+   }
+  } catch {
+    (err) => {
+      console.log(err);
+      return err;
+    };
   }
 };
 
@@ -48,4 +79,5 @@ module.exports = {
   PostProd,
   UpdatedProd,
   UpdatedWholeProd,
+  Login
 };

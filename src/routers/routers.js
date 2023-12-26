@@ -7,5 +7,7 @@ router.delete("/users/:id", ProdControllers.deletedProd);
 router.patch("/users/:id", ProdControllers.UpdatedProd);
 router.put("/users/:id", ProdControllers.UpdatedWholeProd);
 router.post("/users", ProdControllers.PostProd);
+router.post("/login", ProdControllers.Login);
+
 
 module.exports = router;
