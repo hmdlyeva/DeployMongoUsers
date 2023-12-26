@@ -31,9 +31,10 @@ const UpdatedWholeProd = async (req, res) => {
 };
 
 const PostProd = async (req, res) => {
-  let FindProd = await Products.findOne({ id: req.body.id });
-  if (FindProd) {
-    res.send("olmaz");
+  let FindProdBYUsername = await Products.findOne({ username: req.body.username });
+  let FindProdByEmail = await Products.findOne({ email: req.body.email });
+  if (FindProdBYUsername || FindProdByEmail) {
+    res.status(201).send("olmaz");
   } else {
     const NewProd = new Products(req.body);
     NewProd.save();
