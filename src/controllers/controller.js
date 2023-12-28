@@ -1,6 +1,6 @@
 const Products = require("../modules/modules");
 const jwt = require("jsonwebtoken");
-require('dotenv').config();
+require("dotenv").config();
 const getAllProd = async (req, res) => {
   let allProd = await Products.find({});
   // console.log(req.headers.authorization.split(" ")[1]);
@@ -54,6 +54,7 @@ const PostProd = async (req, res) => {
   }
 };
 
+const refTokens = [];
 
 const Login = async (req, res) => {
   const user = req.body;
@@ -67,7 +68,7 @@ const Login = async (req, res) => {
     });
     if (FindProdBYUsername && FindProdByPass) {
       //  res.status(200).send("salam userrrr");
-      console.log('test')
+      console.log("test");
       const token = jwt.sign(
         { username: user.username, password: user.password },
         process.env.SECRET_TOKEN,
@@ -75,8 +76,20 @@ const Login = async (req, res) => {
           expiresIn: "60s",
         }
       );
-      console.log("token", token);
-      return res.status(200).send(token);
+
+      const refToken = jwt.sign(
+        { username: user.username, password: user.password },
+        process.env.REFRESH_TOKEN
+        // {
+        //   expiresIn: "60s",
+        // }
+      );
+
+      // console.log("token", token);
+
+      refTokens.push(refToken);
+
+      return res.status(200).send({ token, refToken });
     } else {
       return res.status(201).send("please check your username or password");
     }
@@ -86,21 +99,14 @@ const Login = async (req, res) => {
       return err;
     };
   }
-
 };
 
-
-
-
-
 const getAllUser = async (req, res) => {
-
   let allUser = await Products.find({});
   // console.log(req.headers.authorization.split(" ")[1]);
   console.log("headers burada", req.headers.authorization.split(" ")[1]);
   res.send(allUser);
-
-}
+};
 
 module.exports = {
   getAllUser,
@@ -111,4 +117,5 @@ module.exports = {
   UpdatedProd,
   UpdatedWholeProd,
   Login,
+  refTokens,
 };
